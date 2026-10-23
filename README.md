@@ -67,17 +67,6 @@ npx cap sync android
 npx cap open android
 ```
 
-En Android Studio, selecciona un emulador o dispositivo conectado y ejecuta la configuración `app`.
-
-Para generar un APK de depuración desde PowerShell:
-
-```powershell
-cd android
-.\gradlew.bat assembleDebug
-```
-
-El APK se genera en `android/app/build/outputs/apk/debug/app-debug.apk`. Si Gradle no encuentra Java, configura **Gradle JDK** en Android Studio para usar JDK 17 o posterior, o configura `JAVA_HOME` en la terminal.
-
 ## Configuración de Firebase
 
 La app usa Firebase Remote Config para el parámetro booleano `category_filter_enabled`. En Firebase Console, configura y publica ese parámetro. Para Android, registra una app con el ID de paquete `io.ionic.starter` y guarda su archivo `google-services.json` en `android/app/`. El archivo está excluido de Git.
@@ -86,8 +75,6 @@ Para la versión web, completa los valores de Firebase en:
 
 - `src/environments/environment.ts`
 - `src/environments/environment.prod.ts`
-
-Consulta [docs/firebase-setup.md](docs/firebase-setup.md) para los pasos detallados. No agregues credenciales de cuenta de servicio ni secretos al código cliente.
 
 ## Comandos disponibles
 

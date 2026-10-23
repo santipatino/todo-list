@@ -1,15 +1,38 @@
 import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon, IonItem, IonInput, IonSelect, IonSelectOption } from '@ionic/angular';
-import { Category } from '@app/tasks/core/entities/category';
-import { TasksConfig } from '@app/tasks/presentation/pages/tasks/tasks.config';
+import {
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonIcon,
+  IonItem,
+  IonInput,
+  IonSelect,
+  IonSelectOption,
+} from '@ionic/angular';
+import { Category } from '@app/features/tasks/core/entities/category';
+import { TasksConfig } from '@app/features/tasks/presentation/pages/tasks/tasks.config';
 
 @Component({
   selector: 'app-task-editor',
   standalone: true,
   templateUrl: './task-editor.component.html',
   styleUrl: './task-editor.component.scss',
-  imports: [FormsModule, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon, IonItem, IonInput, IonSelect, IonSelectOption],
+  imports: [
+    FormsModule,
+    IonButton,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
+    IonIcon,
+    IonItem,
+    IonInput,
+    IonSelect,
+    IonSelectOption,
+  ],
 })
 export class TaskEditorComponent {
   public readonly config = TasksConfig;

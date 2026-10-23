@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Category } from '@app/tasks/core/entities/category';
-import { Task } from '@app/tasks/core/entities/task';
-import { TasksRepository } from '@app/tasks/core/repositories/tasks.repository';
+import { Category } from '@app/features/tasks/core/entities/category';
+import { Task } from '@app/features/tasks/core/entities/task';
+import { TasksRepository } from '@app/features/tasks/core/repositories/tasks.repository';
 
 const TASKS_STORAGE_KEY = 'todo-list.tasks.v1';
 const CATEGORIES_STORAGE_KEY = 'todo-list.categories.v1';

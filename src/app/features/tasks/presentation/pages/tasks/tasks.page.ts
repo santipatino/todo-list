@@ -17,9 +17,9 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular';
-import { Category } from '@app/tasks/core/entities/category';
-import { Task } from '@app/tasks/core/entities/task';
-import { TasksInteractor } from '@app/tasks/core/interactors/tasks.interactor';
+import { Category } from '@app/features/tasks/core/entities/category';
+import { Task } from '@app/features/tasks/core/entities/task';
+import { TasksInteractor } from '@app/features/tasks/core/interactors/tasks.interactor';
 import { RemoteConfigService } from '@app/shared/services/remote-config.service';
 import { BottomNavigationComponent } from '@app/shared/components/bottom-navigation/bottom-navigation.component';
 import { TaskEditorComponent } from './components/task-editor/task-editor.component';

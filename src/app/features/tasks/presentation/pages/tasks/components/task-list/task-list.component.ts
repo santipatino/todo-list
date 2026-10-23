@@ -1,18 +1,46 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, input, output, QueryList, ViewChildren, inject } from '@angular/core';
-import { IonButton, IonButtons, IonCheckbox, IonChip, IonIcon, IonItem, IonLabel, IonList } from '@ionic/angular';
-import { Category } from '@app/tasks/core/entities/category';
-import { Task } from '@app/tasks/core/entities/task';
+import {
+  Component,
+  ElementRef,
+  input,
+  output,
+  QueryList,
+  ViewChildren,
+  inject,
+} from '@angular/core';
+import {
+  IonButton,
+  IonButtons,
+  IonCheckbox,
+  IonChip,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonList,
+} from '@ionic/angular';
+import { Category } from '@app/features/tasks/core/entities/category';
+import { Task } from '@app/features/tasks/core/entities/task';
 import { EmptyStateComponent } from '@app/shared/components/empty-state/empty-state.component';
 import { UiMotionService } from '@app/shared/services/ui-motion.service';
-import { TasksConfig } from '@app/tasks/presentation/pages/tasks/tasks.config';
+import { TasksConfig } from '@app/features/tasks/presentation/pages/tasks/tasks.config';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss',
-  imports: [CommonModule, EmptyStateComponent, IonButton, IonButtons, IonCheckbox, IonChip, IonIcon, IonItem, IonLabel, IonList],
+  imports: [
+    CommonModule,
+    EmptyStateComponent,
+    IonButton,
+    IonButtons,
+    IonCheckbox,
+    IonChip,
+    IonIcon,
+    IonItem,
+    IonLabel,
+    IonList,
+  ],
 })
 export class TaskListComponent {
   public readonly config = TasksConfig;
@@ -29,7 +57,8 @@ export class TaskListComponent {
   private readonly uiMotion = inject(UiMotionService);
 
   public categoryNameFor(task: Task): string | undefined {
-    return this.categories().find((category) => category.id === task.categoryId)?.name;
+    return this.categories().find((category) => category.id === task.categoryId)
+      ?.name;
   }
 
   public async animateEnter(taskId: string): Promise<void> {
@@ -48,7 +77,9 @@ export class TaskListComponent {
   }
 
   private findTaskRow(taskId: string): HTMLElement | undefined {
-    return this.taskRows?.find((row) => row.nativeElement.dataset['taskId'] === taskId)?.nativeElement;
+    return this.taskRows?.find(
+      (row) => row.nativeElement.dataset['taskId'] === taskId,
+    )?.nativeElement;
   }
 
   private nextFrame(): Promise<void> {

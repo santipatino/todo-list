@@ -10,8 +10,8 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular';
 
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
-import { LocalTasksRepository } from './app/tasks/data/repositories/local-tasks.repository';
-import { TasksRepository } from './app/tasks/core/repositories/tasks.repository';
+import { LocalTasksRepository } from './app/features/tasks/data/repositories/local-tasks.repository';
+import { TasksRepository } from './app/features/tasks/core/repositories/tasks.repository';
 import { addIcons } from 'ionicons';
 import {
   addOutline,

@@ -1,10 +1,35 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, inject, OnInit, QueryList, signal, ViewChildren } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  QueryList,
+  signal,
+  ViewChildren,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AlertController, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonFooter, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonTitle, IonToolbar } from '@ionic/angular';
-import { Category } from '@app/tasks/core/entities/category';
-import { Task } from '@app/tasks/core/entities/task';
-import { TasksInteractor } from '@app/tasks/core/interactors/tasks.interactor';
+import {
+  AlertController,
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonContent,
+  IonFooter,
+  IonHeader,
+  IonIcon,
+  IonInput,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular';
+import { Category } from '@app/features/tasks/core/entities/category';
+import { Task } from '@app/features/tasks/core/entities/task';
+import { TasksInteractor } from '@app/features/tasks/core/interactors/tasks.interactor';
 import { BottomNavigationComponent } from '@app/shared/components/bottom-navigation/bottom-navigation.component';
 import { EmptyStateComponent } from '@app/shared/components/empty-state/empty-state.component';
 import { UiMotionService } from '@app/shared/services/ui-motion.service';
@@ -15,7 +40,27 @@ import { CategoriesConfig } from './categories.config';
   standalone: true,
   templateUrl: './categories.page.html',
   styleUrl: './categories.page.scss',
-  imports: [CommonModule, EmptyStateComponent, FormsModule, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonFooter, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonTitle, IonToolbar, BottomNavigationComponent],
+  imports: [
+    CommonModule,
+    EmptyStateComponent,
+    FormsModule,
+    IonButton,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
+    IonContent,
+    IonFooter,
+    IonHeader,
+    IonIcon,
+    IonInput,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonTitle,
+    IonToolbar,
+    BottomNavigationComponent,
+  ],
 })
 export class CategoriesPage implements OnInit {
   public readonly config = CategoriesConfig;
@@ -54,7 +99,9 @@ export class CategoriesPage implements OnInit {
     this.categories.set(categories);
     this.categoryName = '';
     this.validationMessage.set('');
-    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    await new Promise<void>((resolve) =>
+      requestAnimationFrame(() => resolve()),
+    );
     const row = this.findCategoryRow(category.id);
     if (row) {
       await this.uiMotion.enter(row);
@@ -79,7 +126,9 @@ export class CategoriesPage implements OnInit {
       return;
     }
 
-    const categories = this.categories().map((item) => item.id === category.id ? { ...item, name } : item);
+    const categories = this.categories().map((item) =>
+      item.id === category.id ? { ...item, name } : item,
+    );
     this.tasksInteractor.saveCategories(categories);
     this.categories.set(categories);
     this.cancelEdit();
@@ -117,10 +166,16 @@ export class CategoriesPage implements OnInit {
       await this.uiMotion.leave(row);
     }
 
-    const categories = this.categories().filter((item) => item.id !== category.id);
-    const tasks: Task[] = this.tasksInteractor.getTasks().map((task) => task.categoryId === category.id
-      ? { ...task, categoryId: undefined }
-      : task);
+    const categories = this.categories().filter(
+      (item) => item.id !== category.id,
+    );
+    const tasks: Task[] = this.tasksInteractor
+      .getTasks()
+      .map((task) =>
+        task.categoryId === category.id
+          ? { ...task, categoryId: undefined }
+          : task,
+      );
     this.tasksInteractor.saveCategories(categories);
     this.tasksInteractor.saveTasks(tasks);
     this.categories.set(categories);
@@ -131,11 +186,16 @@ export class CategoriesPage implements OnInit {
 
   private hasDuplicateName(name: string, excludedId?: string): boolean {
     const normalizedName = name.toLocaleLowerCase();
-    return this.categories().some((category) => category.id !== excludedId
-      && category.name.toLocaleLowerCase() === normalizedName);
+    return this.categories().some(
+      (category) =>
+        category.id !== excludedId &&
+        category.name.toLocaleLowerCase() === normalizedName,
+    );
   }
 
   private findCategoryRow(categoryId: string): HTMLElement | undefined {
-    return this.categoryRows?.find((row) => row.nativeElement.dataset['categoryId'] === categoryId)?.nativeElement;
+    return this.categoryRows?.find(
+      (row) => row.nativeElement.dataset['categoryId'] === categoryId,
+    )?.nativeElement;
   }
 }

@@ -1,5 +1,5 @@
-import { Category } from '@app/tasks/core/entities/category';
-import { Task } from '@app/tasks/core/entities/task';
+import { Category } from '@app/features/tasks/core/entities/category';
+import { Task } from '@app/features/tasks/core/entities/task';
 
 export abstract class TasksRepository {
   public abstract getTasks(): Task[];

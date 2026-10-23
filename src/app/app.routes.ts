@@ -4,14 +4,14 @@ export const routes: Routes = [
   {
     path: 'tasks',
     loadComponent: () =>
-      import('./tasks/presentation/pages/tasks/tasks.page').then(
+      import('./features/tasks/presentation/pages/tasks/tasks.page').then(
         (m) => m.TasksPage,
       ),
   },
   {
     path: 'categories',
     loadComponent: () =>
-      import('./tasks/presentation/pages/categories/categories.page').then(
+      import('./features/tasks/presentation/pages/categories/categories.page').then(
         (m) => m.CategoriesPage,
       ),
   },

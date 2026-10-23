@@ -1,0 +1,44 @@
+.categories-content {
+  --background: var(--ion-color-step-50, var(--ion-background-color));
+}
+
+.page-shell {
+  width: min(100%, 48rem);
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+ion-card {
+  margin: 0 0 1rem;
+  border-radius: 1rem;
+}
+
+.category-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category-form ion-item {
+  flex: 1;
+}
+
+.category-list {
+  padding: 0;
+  background: transparent;
+}
+
+.category-row {
+  --border-radius: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.validation-message {
+  margin: 0.75rem 0 0;
+  color: var(--ion-color-danger);
+}
+
+.delete-button {
+  --color: var(--ion-color-danger);
+  --border-color: var(--ion-color-danger);
+}

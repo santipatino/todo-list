@@ -1,0 +1,23 @@
+.empty-state {
+  padding: 1.5rem 1rem;
+  color: var(--ion-color-medium);
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .empty-state {
+    animation: empty-state-enter 180ms ease-out both;
+  }
+}
+
+@keyframes empty-state-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

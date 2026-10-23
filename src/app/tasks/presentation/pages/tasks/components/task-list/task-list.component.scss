@@ -1,0 +1,45 @@
+.task-list {
+  padding: 0;
+  background: transparent;
+}
+
+.task-row {
+  --border-radius: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.task-row h2 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.completed-task h2 {
+  color: var(--ion-color-medium);
+  text-decoration: line-through;
+}
+
+.task-actions ion-button {
+  --padding-start: 0.5rem;
+  --padding-end: 0.5rem;
+}
+
+.delete-button {
+  --color: var(--ion-color-danger);
+  --border-color: var(--ion-color-danger);
+}
+
+.task-row ion-label {
+  min-width: 0;
+}
+
+@media (max-width: 24rem) {
+  .task-actions ion-button {
+    --padding-start: 0.3rem;
+    --padding-end: 0.3rem;
+    font-size: 0.7rem;
+  }
+
+  .task-actions ion-icon {
+    display: none;
+  }
+}

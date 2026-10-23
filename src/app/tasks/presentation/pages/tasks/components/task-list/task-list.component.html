@@ -1,0 +1,34 @@
+@if (tasks().length === 0) {
+  <app-empty-state [message]="emptyMessage()"></app-empty-state>
+} @else {
+  <ion-list class="task-list">
+    @for (task of tasks(); track task.id) {
+      <ion-item #taskRow class="task-row" [attr.data-task-id]="task.id">
+        <ion-checkbox
+          slot="start"
+          [checked]="task.completed"
+          [attr.aria-label]="task.completed ? config.actions.markIncomplete : config.actions.markComplete"
+          (ionChange)="taskToggled.emit(task)"
+        ></ion-checkbox>
+        <ion-label [class.completed-task]="task.completed">
+          <h2>{{ task.title }}</h2>
+          @if (categoryNameFor(task); as categoryName) {
+            <ion-chip>{{ categoryName }}</ion-chip>
+          } @else {
+            <p>{{ task.completed ? config.status.completed : config.status.pending }}</p>
+          }
+        </ion-label>
+        <ion-buttons slot="end" class="task-actions">
+          <ion-button size="small" fill="outline" [attr.aria-label]="config.actions.edit" (click)="editRequested.emit(task)">
+            <ion-icon slot="start" name="create-outline"></ion-icon>
+            {{ config.actions.edit }}
+          </ion-button>
+          <ion-button size="small" fill="outline" class="delete-button" [attr.aria-label]="config.actions.delete" (click)="deleteRequested.emit(task)">
+            <ion-icon slot="start" name="trash-outline"></ion-icon>
+            {{ config.actions.delete }}
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    }
+  </ion-list>
+}

@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ config.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="categories-content">
+  <main class="page-shell">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ config.category.add }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form class="category-form" (ngSubmit)="addCategory()">
+          <ion-item>
+            <ion-input
+              [(ngModel)]="categoryName"
+              name="categoryName"
+              [label]="config.category.nameLabel"
+              [placeholder]="config.category.namePlaceholder"
+              labelPlacement="stacked"
+              maxlength="40"
+              required
+            ></ion-input>
+          </ion-item>
+          <ion-button type="submit">
+            <ion-icon slot="start" name="add-outline"></ion-icon>
+            {{ config.category.add }}
+          </ion-button>
+        </form>
+        @if (validationMessage()) {
+          <p class="validation-message" role="alert">{{ validationMessage() }}</p>
+        }
+      </ion-card-content>
+    </ion-card>
+
+    @if (categories().length === 0) {
+      <app-empty-state [message]="config.category.empty"></app-empty-state>
+    } @else {
+      <ion-list class="category-list">
+        @for (category of categories(); track category.id) {
+          <ion-item #categoryRow class="category-row" [attr.data-category-id]="category.id">
+            @if (editingCategoryId() === category.id) {
+              <ion-input
+                [(ngModel)]="categoryEditName"
+                [name]="'edit-' + category.id"
+                [aria-label]="config.category.edit"
+                maxlength="40"
+              ></ion-input>
+              <ion-button slot="end" fill="clear" [attr.aria-label]="config.category.save" (click)="saveEdit(category)">
+                <ion-icon name="checkmark-outline"></ion-icon>
+              </ion-button>
+              <ion-button slot="end" fill="clear" [attr.aria-label]="config.cancel" (click)="cancelEdit()">
+                <ion-icon name="close-outline"></ion-icon>
+              </ion-button>
+            } @else {
+              <ion-label>{{ category.name }}</ion-label>
+              <ion-button slot="end" fill="outline" size="small" (click)="startEdit(category)">
+                <ion-icon slot="start" name="create-outline"></ion-icon>
+                {{ config.actions.edit }}
+              </ion-button>
+              <ion-button slot="end" fill="outline" size="small" class="delete-button" (click)="confirmDelete(category)">
+                <ion-icon slot="start" name="trash-outline"></ion-icon>
+                {{ config.actions.delete }}
+              </ion-button>
+            }
+          </ion-item>
+        }
+      </ion-list>
+    }
+  </main>
+</ion-content>
+
+<ion-footer>
+  <app-bottom-navigation activeTab="categories"></app-bottom-navigation>
+</ion-footer>

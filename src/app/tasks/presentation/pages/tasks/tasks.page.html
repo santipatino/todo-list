@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ config.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="tasks-content">
+  <main class="page-shell">
+    <app-task-editor
+      [categories]="categories()"
+      [editing]="editingTask() !== null"
+      [message]="validationMessage()"
+      [title]="taskTitle()"
+      [categoryId]="taskCategoryId()"
+      (taskTitleChanged)="taskTitle.set($event)"
+      (categoryChanged)="taskCategoryId.set($event)"
+      (taskSaved)="saveTask()"
+      (editCancelled)="cancelTaskEdit()"
+    ></app-task-editor>
+
+    @if (remoteConfig.categoryFilterEnabled() && categories().length > 0) {
+    <ion-item class="filter-control">
+      <ion-select
+        [value]="selectedCategoryId()"
+        (ionChange)="selectedCategoryId.set($event.detail.value)"
+        [label]="config.task.filterLabel"
+        interface="popover"
+      >
+        <ion-select-option [value]="allCategoriesFilter"
+          >{{ config.task.allCategories }}</ion-select-option
+        >
+        @for (category of categories(); track category.id) {
+        <ion-select-option [value]="category.id"
+          >{{ category.name }}</ion-select-option
+        >
+        }
+      </ion-select>
+    </ion-item>
+    }
+
+    <app-task-list
+      [tasks]="visibleTasks()"
+      [categories]="categories()"
+      [emptyMessage]="emptyTaskMessage()"
+      (taskToggled)="toggleTask($event)"
+      (editRequested)="editTask($event)"
+      (deleteRequested)="confirmDeleteTask($event)"
+    ></app-task-list>
+  </main>
+</ion-content>
+
+<ion-footer>
+  <app-bottom-navigation activeTab="tasks"></app-bottom-navigation>
+</ion-footer>

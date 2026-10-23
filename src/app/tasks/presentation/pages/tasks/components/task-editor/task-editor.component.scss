@@ -1,0 +1,16 @@
+.task-editor {
+  margin: 0 0 1rem;
+  border-radius: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.validation-message {
+  margin: 0.75rem 0 0;
+  color: var(--ion-color-danger);
+}

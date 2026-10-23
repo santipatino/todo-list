@@ -1,0 +1,52 @@
+<ion-card class="task-editor">
+  <ion-card-header>
+    <ion-card-title>{{ editing() ? config.task.edit : config.task.add }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <form (ngSubmit)="taskSaved.emit()">
+      <ion-item>
+        <ion-input
+          [ngModel]="title()"
+          (ngModelChange)="taskTitleChanged.emit($event)"
+          name="taskTitle"
+          [label]="config.task.titleLabel"
+          [placeholder]="config.task.titlePlaceholder"
+          labelPlacement="stacked"
+          maxlength="120"
+          required
+        ></ion-input>
+      </ion-item>
+      @if (categories().length > 0) {
+        <ion-item>
+          <ion-select
+            [ngModel]="categoryId()"
+            (ngModelChange)="categoryChanged.emit($event)"
+            name="taskCategory"
+            [label]="config.task.categoryLabel"
+            [placeholder]="config.task.noCategory"
+            interface="popover"
+          >
+            <ion-select-option value="">{{ config.task.noCategory }}</ion-select-option>
+            @for (category of categories(); track category.id) {
+              <ion-select-option [value]="category.id">{{ category.name }}</ion-select-option>
+            }
+          </ion-select>
+        </ion-item>
+      }
+      @if (message()) {
+        <p class="validation-message" role="alert">{{ message() }}</p>
+      }
+      <div class="form-actions">
+        <ion-button type="submit">
+          <ion-icon slot="start" name="add-outline"></ion-icon>
+          {{ editing() ? config.actions.updateTask : config.actions.createTask }}
+        </ion-button>
+        @if (editing()) {
+          <ion-button fill="clear" type="button" (click)="editCancelled.emit()">
+            {{ config.task.cancel }}
+          </ion-button>
+        }
+      </div>
+    </form>
+  </ion-card-content>
+</ion-card>

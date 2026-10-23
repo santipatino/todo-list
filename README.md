@@ -28,7 +28,6 @@ La app no sincroniza tareas con Firebase ni utiliza Firestore. Si Remote Config 
 ### Video de demostración
 [Abrir video](https://1drv.ms/v/c/8ab5e56e8cb22d9f/IQCDjcXBVBtwTJgvYKADRRUTAasgpptYW_5T1yVxqXf04bw?e=ZxzMLi)
 
-[Abrir o descargar el video de demostración](docs/video_demo.mp4).
 
 ## Requisitos
 
